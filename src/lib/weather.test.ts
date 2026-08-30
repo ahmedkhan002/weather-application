@@ -1,0 +1,1 @@
+import{describe,expect,it}from'vitest';import{icon,label}from'./weather';describe('weather helpers',()=>{it('maps clear weather',()=>{expect(icon(0)).toBe('☀');expect(label(0)).toBe('Clear sky')});it('maps precipitation ranges',()=>{expect(label(61)).toBe('Rain');expect(label(71)).toBe('Snow');expect(label(95)).toBe('Thunderstorm')})});
