@@ -1,67 +1,64 @@
-# Atmos — Weather Intelligence
+# Atmos — Spatial Weather Intelligence
 
-A highly art-directed React + TypeScript weather application built around **three genuinely different interface systems**: Modern Minimalism, Liquid Glass, and Spatial UI. This is intentionally more than a weather card: the same live atmosphere is expressed through different visual grammars.
+A production-oriented weather experience built around the idea of a cinematic operating system for understanding the atmosphere. It combines live Open-Meteo data, a GPU-friendly Three.js environment, GSAP motion, an interactive timeline, forecast visualizations, preferences, favorites, geolocation and shareable location routes.
 
-## What is included
-- Live Open-Meteo geocoding and forecast data; no backend or API key.
-- Current temperature, feels-like, condition, humidity, wind, visibility and pressure.
-- 18-hour atmospheric timeline with precipitation probability.
-- 7-day forecast with condition, high/low, rain probability and wind.
-- Solar/UV section with sunrise, solar noon and sunset presentation.
-- Full atmospheric report modal and preferences modal.
-- Debounced city search with remote loading state, clear action and result details.
-- Celsius/Fahrenheit switching.
-- Three visual systems that change component geometry, surfaces and interaction language — not just background colors.
-- Lazy Three.js WebGL atmosphere with adaptive pixel ratio and disposal.
-- GSAP section choreography plus CSS hover/focus motion.
-- Smooth scrolling and reduced-motion fallback.
-- Responsive layouts for desktop, tablet and mobile.
-- GitHub Actions CI for build/test verification.
+## Stack
 
-## The three UI systems
-### Modern Minimalism
-Editorial typography, hard grid lines, restrained radius, whitespace, monochrome hierarchy and data-first rows. It treats weather like a premium information publication.
+Next.js App Router, TypeScript, React, Tailwind CSS v4, Three.js/WebGL, GSAP, Leaflet/React Leaflet, Open-Meteo and Zod, with Vitest tests.
 
-### Liquid Glass
-Translucent surfaces, layered blur, soft borders, floating controls, pill-shaped interaction and depth created by overlapping panels. It is intentionally tactile rather than simply applying a gradient.
+## Architecture
 
-### Spatial UI
-Dark atmospheric canvas, floating objects, depth cues, orbital labels and a WebGL weather object. Cards and controls behave like objects placed in a spatial system rather than flat dashboard tiles.
+- `app/api/weather/route.ts` — validated server-side weather boundary with ten-minute caching.
+- `app/api/geocode/route.ts` — server-side location search boundary with daily revalidation.
+- `lib/weather.ts` — provider-independent domain types, validation, transformation and unit conversion.
+- `components/WeatherScene.tsx` — dynamically imported Three.js atmospheric scene.
+- `components/WeatherMap.tsx` — interactive map surface.
+- `app/page.tsx` — client interaction shell: timeline, search, favorites, settings and synchronized visualizations.
+- `app/weather/[location]/page.tsx` — shareable routes and dynamic metadata.
+
+## Features
+
+- City/country autocomplete and keyboard-first `Ctrl/Cmd + K` search
+- Browser geolocation
+- Favorites persisted locally
+- Shareable `/weather/[location]` routes
+- Celsius/Fahrenheit and km/h/mph/m/s preferences
+- Auto/dark/light theme
+- 48-hour hourly timeline and 10-day forecast
+- Temperature graph and atmospheric metric visualizations
+- Wind compass, humidity liquid, UV gauge and pressure rings
+- Sunrise/sunset solar arc and moon phase
+- Interactive Leaflet map
+- Loading, API, geolocation and empty-search states
+- Reduced-motion support
 
 ## Run locally
+
 ```bash
 npm install
+cp .env.example .env.local
 npm run dev
 ```
 
-Production:
+The default Open-Meteo integration requires no API key. `.env.example` documents extension points for a future private provider.
+
+## Production
+
 ```bash
 npm run build
-npm run preview
+npm start
 ```
 
-Tests:
+## Tests
+
 ```bash
 npm test
 ```
 
-## Architecture
-```text
-src/
-  components/
-    WeatherScene.tsx       lazy Three.js WebGL scene
-  lib/
-    weather.ts             Open-Meteo client + weather helpers
-  App.tsx                  dashboard, modals and interaction state
-  main.tsx                 React entry
-  styles.css               responsive design systems
-.github/workflows/ci.yml   build + test CI
-```
+## Performance
 
-## WebGL / performance
-The Three.js scene is dynamically imported so the 3D dependency is not required for the first application module. Renderer pixel ratio is capped at 1.5, geometry/materials are disposed on teardown, and the animation loop is cancelled on unmount. Vite creates separate `three` and `motion` chunks.
+Three.js is dynamically imported, renderer pixel ratio is capped at 1.5, particle counts adapt to the weather state, resources are disposed on teardown, weather requests are cached, and the client uses local state instead of a global state library. Reduced-motion preferences are respected.
 
-Search requests are debounced, hourly rendering is bounded to the useful near-term window, and CSS is preferred for inexpensive hover/focus states. `prefers-reduced-motion` removes nonessential animation.
+## Screenshots
 
-## Data
-Weather comes directly from Open-Meteo's public geocoding and forecast endpoints. No server, API key or user account is required.
+Add deployment screenshots here.
