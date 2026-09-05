@@ -1,8 +1,8 @@
 {
-  "name": "weather-atelier",
-  "version": "4.0.0",
-  "private": true,
-  "scripts": {"dev":"next dev","build":"next build","start":"next start","lint":"next lint","test":"vitest run"},
-  "dependencies": {"@react-three/fiber":"latest","@react-three/drei":"latest","gsap":"latest","lucide-react":"latest","next":"latest","react":"latest","react-dom":"latest","three":"latest","zod":"latest"},
-  "devDependencies": {"@tailwindcss/postcss":"latest","@types/node":"latest","@types/react":"latest","@types/react-dom":"latest","@types/three":"latest","tailwindcss":"latest","typescript":"latest","vitest":"latest"}
+  "name":"weather-atelier",
+  "version":"4.0.0",
+  "private":true,
+  "scripts":{"dev":"next dev","build":"next build","start":"next start","lint":"next lint","test":"vitest run"},
+  "dependencies":{"@react-three/fiber":"latest","@react-three/drei":"latest","gsap":"latest","lucide-react":"latest","next":"latest","react":"latest","react-dom":"latest","three":"latest","zod":"latest","leaflet":"latest","react-leaflet":"latest"},
+  "devDependencies":{"@tailwindcss/postcss":"latest","@types/leaflet":"latest","@types/node":"latest","@types/react":"latest","@types/react-dom":"latest","@types/three":"latest","tailwindcss":"latest","typescript":"latest","vitest":"latest"}
 }
