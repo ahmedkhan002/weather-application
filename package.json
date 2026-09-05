@@ -1,1 +1,8 @@
-{"name":"weather-atelier","private":true,"version":"3.0.0","type":"module","scripts":{"dev":"vite","build":"tsc -b && vite build","preview":"vite preview","test":"vitest run"},"dependencies":{"@vitejs/plugin-react":"latest","gsap":"latest","lucide-react":"latest","react":"latest","react-dom":"latest","three":"latest"},"devDependencies":{"typescript":"latest","vite":"latest","vitest":"latest","@types/react":"latest","@types/react-dom":"latest","@types/three":"latest"}}
+{
+  "name":"weather-atelier",
+  "version":"4.0.0",
+  "private":true,
+  "scripts":{"dev":"next dev","build":"next build","start":"next start","lint":"next lint","test":"vitest run"},
+  "dependencies":{"@react-three/fiber":"latest","@react-three/drei":"latest","gsap":"latest","lucide-react":"latest","next":"latest","react":"latest","react-dom":"latest","three":"latest","zod":"latest","leaflet":"latest","react-leaflet":"latest"},
+  "devDependencies":{"@tailwindcss/postcss":"latest","@types/leaflet":"latest","@types/node":"latest","@types/react":"latest","@types/react-dom":"latest","@types/three":"latest","tailwindcss":"latest","typescript":"latest","vitest":"latest"}
+}
